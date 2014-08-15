@@ -10,6 +10,8 @@
 
 @interface ViewController ()
 
+@property (weak, nonatomic) IBOutlet UITextField *textField;
+
 @end
 
 @implementation ViewController
@@ -17,13 +19,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
 }
 
-- (void)didReceiveMemoryWarning
+#pragma mark - IBActions
+
+- (IBAction)changeColor:(id)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+	[self.view endEditing:YES];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"ChangeColorNotification" object:[self.textField.text lowercaseString]];
 }
 
 @end
